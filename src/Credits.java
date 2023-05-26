@@ -34,8 +34,8 @@ public class Credits extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
+        setShape(getShape());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("ATM Machine");
@@ -105,7 +105,7 @@ public class Credits extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(418, 285));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
