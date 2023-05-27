@@ -3,18 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 /**
  *
  * @author nejcb
  */
 public class SignUp extends javax.swing.JFrame {
+LinkedList list= new LinkedList();
 
     /**
      * Creates new form SignUp
      */
     public SignUp() {
         initComponents();
+
+        checkFileName();
+        readFile();
     }
 
     /**
@@ -36,7 +46,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
         surname = new javax.swing.JTextField();
-        in_deposit = new javax.swing.JTextField();
+        doposit = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -79,7 +89,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
@@ -118,7 +128,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel13.setText("CONTINENT OF RESIDENCE");
 
-        jButton1.setBackground(new java.awt.Color(192, 0, 68));
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jButton1.setText("CANCEL");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +142,11 @@ public class SignUp extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 204, 255));
         jButton2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jButton2.setText("CREATE ACCOUNT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -215,7 +230,7 @@ public class SignUp extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(in_deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(doposit, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(surname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(161, 161, 161))
@@ -242,7 +257,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(in_deposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(doposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,7 +270,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(continent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -290,6 +305,77 @@ public class SignUp extends javax.swing.JFrame {
         dispose();
         new Home_page().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(list.isExist(username.getText()))
+            
+        {
+             JOptionPane.showMessageDialog(null,"Username already exist!");
+        
+        }
+        
+        else if(username.getText().equals("")|| name.getText().equals("")||doposit.getText().equals("")||surname.getText().equals("")||year_birth.getText().equals(""))
+        {
+             JOptionPane.showMessageDialog(null,"All the Feilds Required !");
+        
+        }
+        else if(checkYear(year_birth.getText()))
+        {
+        
+        
+        Random rand  = new Random();
+     int pin =(int) Math.floor(Math.random()*(9999-1000+1)+1000);
+       int c1,c2,c3,c4;
+       do
+       {
+        c1 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
+        c2 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
+        c3 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
+        c4 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
+        
+       }
+       while (list.check(c1+" "+c2+" "+c3+" "+c4));
+        
+       
+       
+       
+      try{
+          double amount= Double.parseDouble(doposit.getText());
+          if(amount<0)
+          {
+          JOptionPane.showMessageDialog(null, "Amount cannot be negative !  ");
+          return ;
+          }
+          
+          
+           list.insert(new Customer(username.getText(),name.getText(),surname.getText(),year_birth.getText(),amount,pin,c1+" "+c2+" "+c3+" "+c4)); //oroginal:           list.insert(new Customer(username.getText(),name.getText(),amount,pin,c1+" "+c2+" "+c3+" "+c4));
+      
+         writeFile(list.allData());
+       JOptionPane.showMessageDialog(null,"Account is Registerd Successfully !\nAccount PIN = "+pin);
+       name.setText("");
+       surname.setText("");
+       doposit.setText("");
+       username.setText("");
+       year_birth.setText("");
+    
+      dispose();
+      new Home_page().setVisible(true);
+      }
+      
+      catch(Exception e)
+      {
+     
+           JOptionPane.showMessageDialog(null, "Enter valid amount !  ");
+          
+      }
+        }
+        else
+        {
+       JOptionPane.showMessageDialog(null,"Year of birth must be entered as a full year");
+         
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,7 +414,7 @@ public class SignUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> continent;
-    private javax.swing.JTextField in_deposit;
+    private javax.swing.JTextField doposit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -355,4 +441,83 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField username;
     private javax.swing.JTextField year_birth;
     // End of variables declaration//GEN-END:variables
+    
+    
+    private void writeFile(String data) {
+    try {
+      FileWriter myWriter = new FileWriter("data.txt");
+      myWriter.write(data);
+      myWriter.close();
+      System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    
+    
+    }
+
+    private boolean checkYear(String text) {
+    
+        if(text.length()==4)
+        {
+            boolean ret=false;
+            for(int i=0;i<text.length();i++)
+            {
+                 if(text.charAt(i)>=48 && text.charAt(i)<=57)
+                 {
+                    ret=true;
+                 }
+                 else
+                 {
+                 ret=false;
+                 break;
+                 }
+            }
+        
+            return ret;
+            
+        }
+        else
+        {
+        return false;
+        }
+    }
+
+    private void readFile() {
+       try {
+      File myObj = new File("data.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        if(data.length()>5)
+        {
+          String[] cus= data.split(";");
+         // username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
+          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6])); //original:          list.insert(new Customer(cus[0],cus[1],Double.parseDouble(cus[2]),Integer.parseInt(cus[3]),cus[4],cus[5]));
+        
+        }
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    }
+
+    private void checkFileName() {
+        try {
+      File myObj = new File("data.txt");
+      if (myObj.createNewFile()) {
+        System.out.println("File created: " + myObj.getName());
+      } else {
+        System.out.println("File already exists.");
+      }
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    }
+
+
 }
