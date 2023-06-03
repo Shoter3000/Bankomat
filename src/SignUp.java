@@ -475,7 +475,7 @@ LinkedList list= new LinkedList();
         {
           String[] cus= data.split(";");
          // username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
-          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6])); //original:          list.insert(new Customer(cus[0],cus[1],Double.parseDouble(cus[2]),Integer.parseInt(cus[3]),cus[4],cus[5]));
+          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6]));
         
         }
       }
