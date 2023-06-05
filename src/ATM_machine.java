@@ -1,3 +1,8 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +15,35 @@
  */
 public class ATM_machine extends javax.swing.JFrame {
 
+    LinkedList list= new LinkedList();
     /**
      * Creates new form ATM_machine
      */
     public ATM_machine() {
         initComponents();
+        readFile();
     }
+
+    private void readFile() {
+        try {
+       File myObj = new File("data.txt");
+       Scanner myReader = new Scanner(myObj);
+       while (myReader.hasNextLine()) {
+         String data = myReader.nextLine();
+         if(data.length()>5)
+         {
+           String[] cus= data.split(";");
+          // username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
+           list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6]));
+         
+         }
+       }
+       myReader.close();
+     } catch (FileNotFoundException e) {
+       System.out.println("An error occurred.");
+       e.printStackTrace();
+     }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +61,7 @@ public class ATM_machine extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        pin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -134,7 +162,7 @@ public class ATM_machine extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addComponent(jLabel2)))
@@ -150,7 +178,7 @@ public class ATM_machine extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap(154, Short.MAX_VALUE))
@@ -165,54 +193,99 @@ public class ATM_machine extends javax.swing.JFrame {
         jButton1.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton2.setText("4");
         jButton2.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton2.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton2.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton3.setText("7");
         jButton3.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton3.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton3.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton4.setText("2");
         jButton4.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton4.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton5.setText("5");
         jButton5.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton5.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton5.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton6.setText("8");
         jButton6.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton6.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton6.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton7.setText("3");
         jButton7.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton7.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton7.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton8.setText("6");
         jButton8.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton8.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton8.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton9.setText("9");
         jButton9.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton9.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton9.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton11.setMaximumSize(new java.awt.Dimension(40, 40));
@@ -224,6 +297,11 @@ public class ATM_machine extends javax.swing.JFrame {
         jButton12.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton12.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton12.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton13.setMaximumSize(new java.awt.Dimension(40, 40));
@@ -233,14 +311,29 @@ public class ATM_machine extends javax.swing.JFrame {
         jButton15.setBackground(new java.awt.Color(51, 255, 51));
         jButton15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton15.setText("ENTER");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(255, 255, 103));
         jButton14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton14.setText("CLEAR");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton10.setText("CANCLE");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -317,6 +410,11 @@ public class ATM_machine extends javax.swing.JFrame {
         jButton16.setBackground(new java.awt.Color(204, 0, 13));
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton16.setText("EXIT ATM");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 660, -1, -1));
 
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
@@ -346,6 +444,74 @@ public class ATM_machine extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        Customer cus= list.checkPin(pin.getText());
+        if(cus!=null)
+        {
+            this.setVisible(false);
+        new ATM_page().setVisible(true);
+        }
+        else
+        {
+        JOptionPane.showMessageDialog(null,"Invalid PIN");
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.setVisible(false);
+        new Bank().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        pin.setText("");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pin.setText(pin.getText()+"1");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        pin.setText(pin.getText()+"2");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        pin.setText(pin.getText()+"3");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        pin.setText(pin.getText()+"4");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        pin.setText(pin.getText()+"5");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        pin.setText(pin.getText()+"6");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        pin.setText(pin.getText()+"7");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        pin.setText(pin.getText()+"8");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        pin.setText(pin.getText()+"9");
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        pin.setText(pin.getText()+"0");
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Bank().setVisible(true);
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,6 +582,6 @@ public class ATM_machine extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField pin;
     // End of variables declaration//GEN-END:variables
 }

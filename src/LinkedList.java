@@ -246,5 +246,23 @@ public class LinkedList {
            return null;
     
     }
+
+    Customer checkPin(String text) {
     
+    
+        Node temp=head;
+             
+               while(temp!=null)
+               {
+                   
+                   if(text.equals(temp.getCustomer().getPin()+""))
+                   {return temp.getCustomer();
+                   }
+                   
+                   temp=temp.getPre();
+               
+               }
+               return null;
+        
+        }
 }

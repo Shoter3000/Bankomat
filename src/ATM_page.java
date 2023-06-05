@@ -1,3 +1,7 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,12 +12,19 @@
  * @author nejcb
  */
 public class ATM_page extends javax.swing.JFrame {
+Customer cus;
 
     /**
      * Creates new form ATM_page
      */
     public ATM_page() {
         initComponents();
+    }
+    
+    public ATM_page(Customer cus) {
+        initComponents();
+        this.cus=cus;
+
     }
 
     /**
@@ -159,6 +170,11 @@ public class ATM_page extends javax.swing.JFrame {
         jButton1.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton2.setText("4");
@@ -177,6 +193,11 @@ public class ATM_page extends javax.swing.JFrame {
         jButton4.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton4.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton5.setText("5");
@@ -235,6 +256,11 @@ public class ATM_page extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton10.setText("CANCLE");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -311,18 +337,38 @@ public class ATM_page extends javax.swing.JFrame {
         jButton16.setBackground(new java.awt.Color(204, 0, 13));
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton16.setText("EXIT ATM");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 660, -1, -1));
 
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 70, -1));
 
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
         getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 70, -1));
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 70, -1));
 
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 70, -1));
 
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
@@ -340,6 +386,40 @@ public class ATM_page extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        this.setVisible(false);
+        new Bank().setVisible(true);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.setVisible(false);
+        new Bank().setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+
+        this.setVisible(false);
+        new CheckBalance(cus).setVisible(true);
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        this.setVisible(false);
+        new Deposit().setVisible(true);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        this.setVisible(false);
+        new Withdraw().setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     /**
      * @param args the command line arguments
