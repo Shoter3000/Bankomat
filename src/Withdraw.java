@@ -8,12 +8,17 @@
  * @author nejcb
  */
 public class Withdraw extends javax.swing.JFrame {
-
+Customer cus;
     /**
      * Creates new form Withdraw
      */
     public Withdraw() {
         initComponents();
+    }
+    
+     public Withdraw(Customer cus) {
+        initComponents();
+        this.cus=cus;   
     }
 
     /**
@@ -67,6 +72,8 @@ public class Withdraw extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(550, 750));
+        setPreferredSize(new java.awt.Dimension(550, 750));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -244,6 +251,11 @@ public class Withdraw extends javax.swing.JFrame {
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton10.setText("CANCLE");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -320,35 +332,131 @@ public class Withdraw extends javax.swing.JFrame {
         jButton16.setBackground(new java.awt.Color(204, 0, 13));
         jButton16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton16.setText("EXIT ATM");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 660, -1, -1));
 
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 70, -1));
 
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 70, -1));
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 70, -1));
 
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 70, -1));
 
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 70, -1));
 
         jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 70, -1));
 
         jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 70, -1));
 
         jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Button.png"))); // NOI18N
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 70, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        this.setVisible(false);
+        new Confirm(10,cus).setVisible(true);
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        this.setVisible(false);
+        new Confirm(20,cus).setVisible(true);
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        this.setVisible(false);
+        new Confirm(30,cus).setVisible(true);
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        this.setVisible(false);
+        new Confirm(50,cus).setVisible(true);
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        this.setVisible(false);
+        new Confirm(100,cus).setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        this.setVisible(false);
+        new Confirm(150,cus).setVisible(true);
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        this.setVisible(false);
+        new Confirm(200,cus).setVisible(true);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        //new Withdraw_amount(cus).setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.setVisible(false);
+        new ATM_page(cus).setVisible(true); 
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        this.setVisible(false);
+        new Home_page().setVisible(true); 
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments

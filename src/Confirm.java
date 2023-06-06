@@ -1,7 +1,9 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,22 +13,54 @@ import java.util.Scanner;
  *
  * @author nejcb
  */
-public class ATM_page extends javax.swing.JFrame {
-Customer cus;
-
-    /**
-     * Creates new form ATM_page
-     */
-    public ATM_page() {
-        initComponents();
+public class Confirm extends javax.swing.JFrame {
+    LinkedList list= new LinkedList();
+    Customer cus;
+    double amount ;
+    public Confirm() {
+    initComponents();
     }
+
+       public Confirm(double amount ,Customer cus) {
+        initComponents();
+        this.cus= cus;
+        readFile();
+        this.amount=amount;
+    }
+
     
-    public ATM_page(Customer cus) {
-        initComponents();
-        this.cus=cus;
-
+    private void readFile() {
+        try {
+       File myObj = new File("data.txt");
+       Scanner myReader = new Scanner(myObj);
+       while (myReader.hasNextLine()) {
+         String data = myReader.nextLine();
+         if(data.length()>5)
+         {
+           String[] cus= data.split(";");
+          // username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
+           list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6]));
+         
+         }
+       }
+       myReader.close();
+     } catch (FileNotFoundException e) {
+       System.out.println("An error occurred.");
+       e.printStackTrace();
+     }
+     }
+    
+         private void writeFile(String data) {
+    try {
+      FileWriter myWriter = new FileWriter("data.txt");
+      myWriter.write(data);
+      myWriter.close();
+      System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
     }
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,32 +163,36 @@ Customer cus;
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(72, 124, 248), new java.awt.Color(72, 124, 248), new java.awt.Color(72, 124, 248), new java.awt.Color(72, 124, 248)));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setText("Withdraw");
+        jLabel7.setText("No");
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel8.setText("Deposit");
+        jLabel8.setText("Yes");
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel9.setText("Check Balance");
+        jLabel9.setText("Do you want print recipit?");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(65, 65, 65))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel9)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(53, 53, 53)
                 .addComponent(jLabel7)
@@ -257,6 +295,11 @@ Customer cus;
         jButton14.setBackground(new java.awt.Color(255, 255, 103));
         jButton14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton14.setText("CLEAR");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -400,35 +443,56 @@ Customer cus;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.setVisible(false);
         new Home_page().setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        this.setVisible(false);
-        new ATM_machine().setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+if(cus.withdraw(amount))
+{
+       JOptionPane.showMessageDialog(null, "Pick Your Money ");
+list.Withraw(cus);
+writeFile(list.allData());
+}
+else
+{
+JOptionPane.showMessageDialog(null, "Your balance is too low!");
+}
+this.setVisible(false);
+new Home_page().setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
 
-        this.setVisible(false);
-        new CheckBalance(cus).setVisible(true);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        this.setVisible(false);
-        //new Deposit(cus).setVisible(true);
+if(cus.withdraw(amount))
+{
+       JOptionPane.showMessageDialog(null, "Name: "+cus.getName()+"\n"+"Account: "+cus.getUsername()+"\n"+"Remaining Balane: "+cus.getBalance());
+list.Withraw(cus);
+writeFile(list.allData());
+}
+else
+{
+JOptionPane.showMessageDialog(null, "Your balance is too low!");
+}
+this.setVisible(false);
+new Home_page().setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        this.setVisible(false);
-        new Withdraw(cus).setVisible(true);
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,20 +511,20 @@ Customer cus;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ATM_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Confirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ATM_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Confirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ATM_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Confirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ATM_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Confirm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ATM_page().setVisible(true);
+                new Confirm().setVisible(true);
             }
         });
     }

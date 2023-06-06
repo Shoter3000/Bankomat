@@ -247,7 +247,7 @@ public class LinkedList {
     
     }
 
-    Customer checkPin(String text) {
+    Customer checkPInCard(String text, String text0) {
     
     
         Node temp=head;
@@ -255,7 +255,7 @@ public class LinkedList {
                while(temp!=null)
                {
                    
-                   if(text.equals(temp.getCustomer().getPin()+""))
+                   if(text.equals(temp.getCustomer().getPin()+"") && text0.equals(temp.getCustomer().getCard()) )
                    {return temp.getCustomer();
                    }
                    

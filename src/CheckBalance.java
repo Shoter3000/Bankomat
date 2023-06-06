@@ -20,7 +20,6 @@ Customer cus;
     public CheckBalance(Customer cus) {
         initComponents();
         this.cus=cus;
-        
         balance.setText(cus.getBalance()+"");
     }
 
@@ -370,12 +369,12 @@ Customer cus;
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-        new ATM_page().setVisible(true);   
+        new ATM_page(cus).setVisible(true);   
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         this.setVisible(false);
-        new ATM_page().setVisible(true);   
+        new ATM_page(cus).setVisible(true);   
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed

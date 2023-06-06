@@ -63,6 +63,9 @@ public class ATM_machine extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         pin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        card = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -151,8 +154,50 @@ public class ATM_machine extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setText("PIN");
 
+        pin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pinFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pinFocusLost(evt);
+            }
+        });
+        pin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pinKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pinKeyTyped(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel2.setText("Enter PIN");
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel8.setText("CARD NUMBER");
+
+        card.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        card.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cardFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cardFocusLost(evt);
+            }
+        });
+        card.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cardKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cardKeyTyped(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel6.setText("Enter Card Number");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,27 +206,42 @@ public class ATM_machine extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel2)))
-                .addContainerGap(96, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(162, 162, 162))
+                        .addGap(44, 44, 44)
+                        .addComponent(card, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(jLabel7)))))
+                .addGap(57, 57, 57))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(card, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 370, 280));
@@ -446,72 +506,397 @@ public class ATM_machine extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        Customer cus= list.checkPin(pin.getText());
+        Customer cus= list.checkPInCard(pin.getText(),card.getText());
         if(cus!=null)
         {
             this.setVisible(false);
-        new ATM_page().setVisible(true);
+        new ATM_page(cus).setVisible(true);
         }
         else
         {
-        JOptionPane.showMessageDialog(null,"Invalid PIN");
+        JOptionPane.showMessageDialog(null,"Invalid Card PIN or CARD");
+        pin.setText("");
+        card.setText("");
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.setVisible(false);
-        new Bank().setVisible(true);
+        new Home_page().setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         pin.setText("");
+        card.setText("");
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pin.setText(pin.getText()+"1");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"1");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"1");
+           
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        pin.setText(pin.getText()+"2");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"2");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"2");
+           
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        pin.setText(pin.getText()+"3");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"3");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"3");
+           
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        pin.setText(pin.getText()+"4");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"4");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"4");
+           
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        pin.setText(pin.getText()+"5");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"5");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"5");
+           
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        pin.setText(pin.getText()+"6");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"6");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"6");
+           
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        pin.setText(pin.getText()+"7");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"7");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"7");
+           
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        pin.setText(pin.getText()+"8");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"8");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"8");
+           
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        pin.setText(pin.getText()+"9");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"9");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"9");
+           
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        pin.setText(pin.getText()+"0");
+        if(p==1)
+        {
+          pin.setText(pin.getText()+"0");
+        
+        }
+        else if(p==2)
+        {
+           if(card.getText().length()==4)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+           else if(card.getText().length()==9)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+           
+          else if(card.getText().length()==14)
+            
+           {
+              card.setText(card.getText()+" ");
+           }
+           
+            card.setText(card.getText()+"0");
+           
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new Bank().setVisible(true);
+        new Home_page().setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
+int p=0;
+    private void cardFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cardFocusGained
+        p=2;
+    }//GEN-LAST:event_cardFocusGained
+
+    private void cardFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cardFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardFocusLost
+
+    private void cardKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cardKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardKeyPressed
+
+    private void cardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cardKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cardKeyTyped
+
+    private void pinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinFocusGained
+        p=1;
+    }//GEN-LAST:event_pinFocusGained
+
+    private void pinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinFocusLost
+
+    }//GEN-LAST:event_pinFocusLost
+
+    private void pinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pinKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pinKeyPressed
+
+    private void pinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pinKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pinKeyTyped
 
     /**
      * @param args the command line arguments
@@ -549,6 +934,7 @@ public class ATM_machine extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField card;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -578,7 +964,9 @@ public class ATM_machine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
