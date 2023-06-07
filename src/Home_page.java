@@ -298,8 +298,8 @@ public class Home_page extends javax.swing.JFrame {
         Customer cus= list.checkUser(pin.getText(),username_input.getText());
         if(cus!=null)
         {
-            this.setVisible(false);
-        new Bank().setVisible(true);
+        this.setVisible(false);
+        new Bank(cus).setVisible(true);
         }
         else
         {

@@ -165,21 +165,21 @@ public class LinkedList {
            return false;
     }
 
-    String UsernameInfo(String text) {
+    String UsernameInfo(Customer cuss) {
          Node temp=head;
          
            while(temp!=null)
            {
                
-               if(text.equals(temp.getCustomer().getUsername()))
+               if(cuss.getUsername().equals(temp.getCustomer().getUsername()))
                {
-                   return "\nUsername                      ="+temp.getCustomer().getUsername()
-                         +"\nName                          ="+temp.getCustomer().getName()
-                         +"\nSurname                       ="+temp.getCustomer().getSurname()
-                         +"\nYear of birth                 ="+temp.getCustomer().getYear_birth()
-                         +"\nPIN                           ="+temp.getCustomer().getPin()
-                         +"\nCard#                         ="+temp.getCustomer().getCard()
-                         +"\nBalance                       ="+temp.getCustomer().getBalance();
+                   return "Username                        "+temp.getCustomer().getUsername()
+                         +"\nName                          "+temp.getCustomer().getName()
+                         +"\nSurname                       "+temp.getCustomer().getSurname()
+                         +"\nYear of birth                 "+temp.getCustomer().getYear_birth()
+                         +"\nPIN                           "+temp.getCustomer().getPin()
+                         +"\nCard#                         "+temp.getCustomer().getCard()
+                         +"\nBalance                       "+temp.getCustomer().getBalance();
                                  
                }
                temp=temp.getPre();
