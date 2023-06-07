@@ -51,15 +51,15 @@ public class Confirm extends javax.swing.JFrame {
      }
     
          private void writeFile(String data) {
-    try {
-      FileWriter myWriter = new FileWriter("data.txt");
-      myWriter.write(data);
-      myWriter.close();
-      System.out.println("Successfully wrote to the file.");
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
+            try {
+              FileWriter myWriter = new FileWriter("data.txt");
+              myWriter.write(data);
+              myWriter.close();
+              System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+              System.out.println("An error occurred.");
+              e.printStackTrace();
+            }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,6 +107,7 @@ public class Confirm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(550, 750));
+        setPreferredSize(new java.awt.Dimension(550, 750));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -268,9 +269,15 @@ public class Confirm extends javax.swing.JFrame {
         jButton9.setPreferredSize(new java.awt.Dimension(40, 40));
 
         jButton11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jButton11.setText("<");
         jButton11.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton11.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton11.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton12.setText("0");
@@ -279,6 +286,7 @@ public class Confirm extends javax.swing.JFrame {
         jButton12.setPreferredSize(new java.awt.Dimension(40, 40));
 
         jButton13.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jButton13.setText(".");
         jButton13.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton13.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton13.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -444,7 +452,20 @@ public class Confirm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+        if(cus.withdraw(amount))
+        {
+               JOptionPane.showMessageDialog(null, "Name: "+cus.getName()+" "+cus.getSurname()+"\n"+"Account: "+cus.getUsername()+"\n"+"Remaining Balane: "+cus.getBalance()+" €");
+        list.Withraw(cus);
+        writeFile(list.allData());
+        }
+        else
+        {
+        JOptionPane.showMessageDialog(null, "Your balance is too low!");
+        this.setVisible(false);
+        new Withdraw(cus).setVisible(true);
+        }
+        this.setVisible(false);
+        new ATM_page(cus).setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -457,18 +478,20 @@ public class Confirm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-if(cus.withdraw(amount))
-{
-       JOptionPane.showMessageDialog(null, "Pick Your Money ");
-list.Withraw(cus);
-writeFile(list.allData());
-}
-else
-{
-JOptionPane.showMessageDialog(null, "Your balance is too low!");
-}
-this.setVisible(false);
-new Home_page().setVisible(true);
+        if(cus.withdraw(amount))
+        {
+               JOptionPane.showMessageDialog(null, "Pick Your Money ");
+        list.Withraw(cus);
+        writeFile(list.allData());
+        }
+        else
+        {
+        JOptionPane.showMessageDialog(null, "Your balance is too low!");
+        this.setVisible(false);
+        new Withdraw(cus).setVisible(true);
+        }
+        this.setVisible(false);
+        new ATM_page(cus).setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -476,23 +499,29 @@ new Home_page().setVisible(true);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-if(cus.withdraw(amount))
-{
-       JOptionPane.showMessageDialog(null, "Name: "+cus.getName()+"\n"+"Account: "+cus.getUsername()+"\n"+"Remaining Balane: "+cus.getBalance());
-list.Withraw(cus);
-writeFile(list.allData());
-}
-else
-{
-JOptionPane.showMessageDialog(null, "Your balance is too low!");
-}
-this.setVisible(false);
-new Home_page().setVisible(true);
+        if(cus.withdraw(amount))
+        {
+               JOptionPane.showMessageDialog(null, "Name: "+cus.getName()+" "+cus.getSurname()+"\n"+"Account: "+cus.getUsername()+"\n"+"Remaining Balane: "+cus.getBalance()+" €");
+        list.Withraw(cus);
+        writeFile(list.allData());
+        }
+        else
+        {
+        JOptionPane.showMessageDialog(null, "Your balance is too low!");
+        this.setVisible(false);
+        new Withdraw(cus).setVisible(true);
+        }
+        this.setVisible(false);
+        new ATM_page(cus).setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments

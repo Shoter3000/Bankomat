@@ -20,7 +20,7 @@ Customer cus;
     public CheckBalance(Customer cus) {
         initComponents();
         this.cus=cus;
-        balance.setText(cus.getBalance()+"");
+        balance.setText(cus.getBalance()+" €");
     }
 
     /**

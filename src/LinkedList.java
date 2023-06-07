@@ -188,23 +188,21 @@ public class LinkedList {
            return "";
     }
 
-    String Deposit(String text, double amount) {
+    void Deposit(Customer cuss, double amount) {
     Node temp=head;
          
            while(temp!=null)
            {
                
-               if(text.equals(temp.getCustomer().getUsername()))
+               if(cuss.getUsername().equals(temp.getCustomer().getUsername()))
                {
                    temp.getCustomer().deposit(amount);
-                   
-                  return ""; 
+                   break; 
                }
                
                temp=temp.getPre();
            
            }
-           return "";
     
     }
 

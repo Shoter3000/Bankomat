@@ -418,7 +418,7 @@ Customer cus;
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         this.setVisible(false);
-        //new Deposit(cus).setVisible(true);
+        new Deposit(cus).setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed

@@ -445,7 +445,7 @@ Customer cus;
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        //new Withdraw_amount(cus).setVisible(true);
+        new Withdraw_amount(cus).setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

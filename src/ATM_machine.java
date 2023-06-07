@@ -348,9 +348,15 @@ public class ATM_machine extends javax.swing.JFrame {
         });
 
         jButton11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jButton11.setText("<");
         jButton11.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton11.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton11.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton12.setText("0");
@@ -364,6 +370,7 @@ public class ATM_machine extends javax.swing.JFrame {
         });
 
         jButton13.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jButton13.setText(".");
         jButton13.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton13.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton13.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -897,6 +904,23 @@ int p=0;
     private void pinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pinKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_pinKeyTyped
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        if(p==1){
+            String currentAmount = pin.getText();
+            if (!currentAmount.isEmpty()) {
+            pin.setText(currentAmount.substring(0, currentAmount.length() - 1));
+            }
+        }
+        else if(p==2)
+        {
+            String currentAmount = card.getText();
+            if (!currentAmount.isEmpty()) {
+            card.setText(currentAmount.substring(0, currentAmount.length() - 1));
+            }
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
