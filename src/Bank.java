@@ -28,7 +28,7 @@ LinkedList list= new LinkedList();
         initComponents();
         this.cus= cus;
         readFile();
-        display.setText("Welcome "+cus.getName());
+        display.setText("Welcome "+cus.getName()+"!");
     }
 
     private void readFile() {
@@ -80,11 +80,11 @@ LinkedList list= new LinkedList();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         display = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataDis = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -97,7 +97,6 @@ LinkedList list= new LinkedList();
         setMinimumSize(new java.awt.Dimension(800, 500));
         setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -117,7 +116,7 @@ LinkedList list= new LinkedList();
                 .addComponent(jLabel3)
                 .addGap(140, 140, 140)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
@@ -136,8 +135,6 @@ LinkedList list= new LinkedList();
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 788, -1));
-
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Log Out");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +142,6 @@ LinkedList list= new LinkedList();
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 117, -1, -1));
 
         jButton2.setText("Account Info");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -153,10 +149,6 @@ LinkedList list= new LinkedList();
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 185, -1, -1));
-
-        jButton3.setText("Change PIN");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 185, 112, -1));
 
         jButton4.setText("Use ATM");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -164,18 +156,17 @@ LinkedList list= new LinkedList();
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 185, 112, -1));
 
         display.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         display.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(display, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 286, 30));
 
         dataDis.setColumns(20);
         dataDis.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         dataDis.setRows(5);
         jScrollPane1.setViewportView(dataDis);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 246, 766, 205));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User.jpg"))); // NOI18N
+        jLabel4.setPreferredSize(new java.awt.Dimension(20, 20));
 
         jMenu1.setText("File");
 
@@ -219,7 +210,53 @@ LinkedList list= new LinkedList();
 
         setJMenuBar(jMenuBar1);
 
-        pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149)
+                .addComponent(jButton1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(jButton2)
+                .addGap(103, 103, 103)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jButton1)))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton4))))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        setSize(new java.awt.Dimension(800, 500));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,11 +332,11 @@ LinkedList list= new LinkedList();
     private javax.swing.JLabel display;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
