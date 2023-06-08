@@ -343,7 +343,7 @@ public class Withdraw_amount extends javax.swing.JFrame {
 
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setText("CANCLE");
+        jButton10.setText("CANCEL");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);

@@ -173,13 +173,13 @@ public class LinkedList {
                
                if(cuss.getUsername().equals(temp.getCustomer().getUsername()))
                {
-                   return "Username                        "+temp.getCustomer().getUsername()
-                         +"\nName                          "+temp.getCustomer().getName()
-                         +"\nSurname                       "+temp.getCustomer().getSurname()
-                         +"\nYear of birth                 "+temp.getCustomer().getYear_birth()
-                         +"\nPIN                           "+temp.getCustomer().getPin()
-                         +"\nCard#                         "+temp.getCustomer().getCard()
-                         +"\nBalance                       "+temp.getCustomer().getBalance();
+                   return "\nUsername                    "+temp.getCustomer().getUsername()
+                         +"\nName                        "+temp.getCustomer().getName()
+                         +"\nSurname                     "+temp.getCustomer().getSurname()
+                         +"\nYear of birth               "+temp.getCustomer().getYear_birth()
+                         +"\nPIN                         "+temp.getCustomer().getPin()
+                         +"\nCard#                       "+temp.getCustomer().getCard()
+                         +"\nBalance                     "+temp.getCustomer().getBalance();
                                  
                }
                temp=temp.getPre();

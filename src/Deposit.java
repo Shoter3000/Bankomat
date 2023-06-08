@@ -4,6 +4,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.math.BigDecimal;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -311,7 +313,7 @@ LinkedList list= new LinkedList();
 
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setText("CANCLE");
+        jButton10.setText("CANCEL");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -506,27 +508,30 @@ LinkedList list= new LinkedList();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-            try{
-            double amount1 =Double.parseDouble(amount.getText());
+    try {
+        double amount1 = Double.parseDouble(amount.getText());
+        BigDecimal decimalAmount = new BigDecimal(String.valueOf(amount1));
 
-            if(amount1<0)
-            {
-               JOptionPane.showMessageDialog(null, "Amount not be Negatve !");
-            return ;
-            }
-            list.Deposit(cus, amount1);
-            writeFile(list.allData());
-            JOptionPane.showMessageDialog(null, "Money successfully deposited into the account");
-            }
+        // Check if the number has more than two decimal places
+        if (decimalAmount.scale() > 2) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+            return;
+        }
 
-            catch(Exception ex)
-            {
-            JOptionPane.showMessageDialog(null, "Please Enter Valid amount");
-            this.setVisible(false);
-            new Withdraw(cus).setVisible(true);
-            }
-            this.setVisible(false);
-            new ATM_page(cus).setVisible(true);
+        if (amount1 < 0) {
+            JOptionPane.showMessageDialog(null, "Amount should not be negative!");
+            return;
+        }
+
+        list.Deposit(cus, amount1);
+        writeFile(list.allData());
+        JOptionPane.showMessageDialog(null, "Money successfully deposited into the account,"+"\n"+"you will be now logged out!");
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+    }
+
+    this.setVisible(false);
+    new ATM_machine().setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -583,27 +588,30 @@ LinkedList list= new LinkedList();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-            try{
-            double amount1 =Double.parseDouble(amount.getText());
+    try {
+        double amount1 = Double.parseDouble(amount.getText());
+        BigDecimal decimalAmount = new BigDecimal(String.valueOf(amount1));
 
-            if(amount1<0)
-            {
-               JOptionPane.showMessageDialog(null, "Amount not be Negatve !");
-            return ;
-            }
-            list.Deposit(cus, amount1);
-            writeFile(list.allData());
-            JOptionPane.showMessageDialog(null, "Money successfully deposited into the account");
-            }
+        // Check if the number has more than two decimal places
+        if (decimalAmount.scale() > 2) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+            return;
+        }
 
-            catch(Exception ex)
-            {
-            JOptionPane.showMessageDialog(null, "Please Enter Valid amount");
-            this.setVisible(false);
-            new Withdraw(cus).setVisible(true);
-            }
-            this.setVisible(false);
-            new ATM_page(cus).setVisible(true);
+        if (amount1 < 0) {
+            JOptionPane.showMessageDialog(null, "Amount should not be negative!");
+            return;
+        }
+
+        list.Deposit(cus, amount1);
+        writeFile(list.allData());
+        JOptionPane.showMessageDialog(null, "Money successfully deposited into the account,"+"\n"+"you will be now logged out!");
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+    }
+
+    this.setVisible(false);
+    new ATM_machine().setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     /**

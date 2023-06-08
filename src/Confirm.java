@@ -311,7 +311,7 @@ public class Confirm extends javax.swing.JFrame {
 
         jButton10.setBackground(new java.awt.Color(204, 0, 13));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setText("CANCLE");
+        jButton10.setText("CANCEL");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -461,8 +461,6 @@ public class Confirm extends javax.swing.JFrame {
         else
         {
         JOptionPane.showMessageDialog(null, "Your balance is too low!");
-        this.setVisible(false);
-        new Withdraw(cus).setVisible(true);
         }
         this.setVisible(false);
         new ATM_page(cus).setVisible(true);
@@ -508,8 +506,6 @@ public class Confirm extends javax.swing.JFrame {
         else
         {
         JOptionPane.showMessageDialog(null, "Your balance is too low!");
-        this.setVisible(false);
-        new Withdraw(cus).setVisible(true);
         }
         this.setVisible(false);
         new ATM_page(cus).setVisible(true);
