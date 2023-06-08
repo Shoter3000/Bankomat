@@ -354,7 +354,7 @@ LinkedList list= new LinkedList();
         }
         else
         {
-       JOptionPane.showMessageDialog(null,"Year of birth must be entered as a full year");
+       JOptionPane.showMessageDialog(null,"Year of birth must be valid!");
          
         }
         
@@ -455,9 +455,14 @@ LinkedList list= new LinkedList();
                  break;
                  }
             }
-        
-            return ret;
-            
+            int text1 = Integer.parseInt(text);
+            if(text1>=1900 && text1<=2023){
+                ret=true;
+                }
+                else{
+                ret=false;
+                }
+            return ret;            
         }
         else
         {
