@@ -58,8 +58,8 @@ LinkedList list= new LinkedList();
         email = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        Password = new javax.swing.JPasswordField();
-        RetypePassword = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
+        retypePassword = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -75,7 +75,6 @@ LinkedList list= new LinkedList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -167,9 +166,9 @@ LinkedList list= new LinkedList();
         jLabel14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel14.setText("ADDRESS *");
 
-        RetypePassword.addActionListener(new java.awt.event.ActionListener() {
+        retypePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RetypePasswordActionPerformed(evt);
+                retypePasswordActionPerformed(evt);
             }
         });
 
@@ -273,9 +272,9 @@ LinkedList list= new LinkedList();
                                             .addComponent(jLabel15))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(Password, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(RetypePassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                                            .addComponent(retypePassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(18, 18, 18)
@@ -299,13 +298,13 @@ LinkedList list= new LinkedList();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(doposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(retypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -354,83 +353,54 @@ LinkedList list= new LinkedList();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(list.isExist(username.getText()))
-            
-        {
-             JOptionPane.showMessageDialog(null,"Username already exists!");
-        
+ if (list.isExist(username.getText())) {
+    JOptionPane.showMessageDialog(null, "Username already exists!");
+} else if (username.getText().equals("") || name.getText().equals("") || doposit.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || password.getText().equals("") || retypePassword.getText().equals("") || address.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "All the fields are required!");
+} else if (checkYear(year_birth.getText())) {
+    Random rand = new Random();
+    int pin = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+    int c1, c2, c3, c4;
+    do {
+        c1 = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+        c2 = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+        c3 = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+        c4 = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+    } while (list.check(c1 + " " + c2 + " " + c3 + " " + c4));
+
+    try {
+        double amount = Double.parseDouble(doposit.getText());
+        if (amount < 0) {
+            JOptionPane.showMessageDialog(null, "Amount cannot be negative!");
+            return;
         }
-        
-        else if(username.getText().equals("")|| name.getText().equals("")||doposit.getText().equals("")||surname.getText().equals("")||year_birth.getText().equals(""))
-        {
-             JOptionPane.showMessageDialog(null,"All the Feilds Required !");
-        
-        }
-        else if(checkYear(year_birth.getText()))
-        {
-        
-        
-        Random rand  = new Random();
-     int pin =(int) Math.floor(Math.random()*(9999-1000+1)+1000);
-       int c1,c2,c3,c4;
-       do
-       {
-        c1 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
-        c2 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
-        c3 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
-        c4 = (int) Math.floor(Math.random()*(9999-1000+1)+1000);
-        
-       }
-       while (list.check(c1+" "+c2+" "+c3+" "+c4));
-        
-       
-       
-       
-      try{
-          double amount= Double.parseDouble(doposit.getText());
-          if(amount<0)
-          {
-          JOptionPane.showMessageDialog(null, "Amount cannot be negative !  ");
-          return ;
-          }
-          
-          
-           list.insert(new Customer(username.getText(),name.getText(),surname.getText(),year_birth.getText(),amount,pin,c1+" "+c2+" "+c3+" "+c4)); //oroginal:           list.insert(new Customer(username.getText(),name.getText(),amount,pin,c1+" "+c2+" "+c3+" "+c4));
-      
-         writeFile(list.allData());
-       JOptionPane.showMessageDialog(null,"Account is Registerd Successfully !\nAccount PIN = "+pin);
-       name.setText("");
-       surname.setText("");
-       doposit.setText("");
-       username.setText("");
-       year_birth.setText("");
-    
-      dispose();
-      new Home_page().setVisible(true);
-      }
-      
-      catch(Exception e)
-      {
-     
-           JOptionPane.showMessageDialog(null, "Enter valid amount !  ");
-          
-      }
-        }
-        else
-        {
-       JOptionPane.showMessageDialog(null,"Year of birth must be valid!");
-         
-        }
-        
+
+        list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, c1 + " " + c2 + " " + c3 + " " + c4));
+        writeFile(list.allData());
+        JOptionPane.showMessageDialog(null, "Account is registered successfully!\nAccount PIN = " + pin);
+        name.setText("");
+        surname.setText("");
+        doposit.setText("");
+        username.setText("");
+        year_birth.setText("");
+
+        dispose();
+        new Home_page().setVisible(true);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Enter a valid amount!");
+    }
+} else {
+    JOptionPane.showMessageDialog(null, "Year of birth must be valid!");
+}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
-    private void RetypePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RetypePasswordActionPerformed
+    private void retypePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retypePasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RetypePasswordActionPerformed
+    }//GEN-LAST:event_retypePasswordActionPerformed
 
     private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
         // TODO add your handling code here:
@@ -477,8 +447,6 @@ LinkedList list= new LinkedList();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField Password;
-    private javax.swing.JPasswordField RetypePassword;
     private javax.swing.JTextField address;
     private javax.swing.JTextField doposit;
     private javax.swing.JTextField email;
@@ -507,6 +475,8 @@ LinkedList list= new LinkedList();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JTextField name;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField retypePassword;
     private javax.swing.JTextField surname;
     private javax.swing.JTextField username;
     private javax.swing.JTextField year_birth;
@@ -545,7 +515,7 @@ LinkedList list= new LinkedList();
                  }
             }
             int text1 = Integer.parseInt(text);
-            if(text1>=1900 && text1<=2023){
+            if(text1>=1900 && text1<=2024){
                 ret=true;
                 }
                 else{
