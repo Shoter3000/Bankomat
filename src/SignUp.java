@@ -497,38 +497,28 @@ LinkedList list= new LinkedList();
     
     }
 
-    private boolean checkYear(String text) {
-    
-        if(text.length()==4)
-        {
-            boolean ret=false;
-            for(int i=0;i<text.length();i++)
-            {
-                 if(text.charAt(i)>=48 && text.charAt(i)<=57)
-                 {
-                    ret=true;
-                 }
-                 else
-                 {
-                 ret=false;
-                 break;
-                 }
-            }
-            int text1 = Integer.parseInt(text);
-            if(text1>=1900 && text1<=2024){
-                ret=true;
-                }
-                else{
-                ret=false;
-                }
-            return ret;            
-        }
-        else
-        {
-        return false;
-        }
+private boolean checkYear(String text) {
+    if(text.isEmpty()) {
+        return true; // Return true if the string is empty
     }
 
+    if(text.length() == 4) {
+        boolean ret = true; // Initialize to true
+        for(int i = 0; i < text.length(); i++) {
+            if(text.charAt(i) < '0' || text.charAt(i) > '9') {
+                ret = false; // If any character is not a digit, set ret to false
+                break;
+            }
+        }
+        if(ret) { // If ret is still true
+            int text1 = Integer.parseInt(text);
+            ret = (text1 >= 1900 && text1 <= 2024); // Check if the year is within the specified range
+        }
+        return ret; // Return the result
+    } else {
+        return false; // Return false if the length is not 4
+    }
+}
     private void readFile() {
        try {
       File myObj = new File("data.txt");
