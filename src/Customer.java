@@ -8,7 +8,7 @@
  * @author nejcb
  */
 public class Customer {
-    String name, surname, username, card, year_birth;
+    String name, surname, username, card, year_birth, MD5password, email, address;
     double balance;
     int pin;
     //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;

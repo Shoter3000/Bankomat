@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Arrays;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /**
  *
  * @author nejcb
@@ -385,6 +388,9 @@ LinkedList list= new LinkedList();
             JOptionPane.showMessageDialog(null, "Amount cannot be negative!");
             return;
         }
+        char[] CharPassword = password.getPassword();
+        String StringPassword = new String(CharPassword);
+        String MD5Password = getMd5Hash(StringPassword);
 
         list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, c1 + " " + c2 + " " + c3 + " " + c4));
         writeFile(list.allData());
@@ -394,6 +400,10 @@ LinkedList list= new LinkedList();
         doposit.setText("");
         username.setText("");
         year_birth.setText("");
+        email.setText("");
+        password.setText("");
+        retypePassword.setText("");
+        address.setText("e.g. Trubarjeva ulica 10, 1000 Ljubljana");
 
         dispose();
         new Home_page().setVisible(true);
@@ -590,5 +600,20 @@ private boolean checkYear(String text) {
         }
     }
     return hasUppercase && hasLowercase && hasDigit && hasSpecial;
+    }
+    
+    public static String getMd5Hash(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(password.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            String hashText = no.toString(16);
+            while (hashText.length() < 32) {
+                hashText = "0" + hashText;
+            }
+            return hashText;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
