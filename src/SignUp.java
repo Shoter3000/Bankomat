@@ -366,8 +366,9 @@ LinkedList list= new LinkedList();
     JOptionPane.showMessageDialog(null, "Passwords do not match!");
 } else if (!isStrongPassword(new String(password.getPassword()))) {
     JOptionPane.showMessageDialog(null, "Password is not strong enough!\nPassword must be longer than 8 characters. \nIt must contain uppercase and lowercase \nletters, numbers and special characters.");
-}
-else if (checkYear(year_birth.getText())) {
+} else if(address.getText().equals("e.g. Trubarjeva ulica 10, 1000 Ljubljana")){
+    JOptionPane.showMessageDialog(null, "Enter the address!");   
+}else if (checkYear(year_birth.getText())) {
     Random rand = new Random();
     int pin = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
     int c1, c2, c3, c4;
