@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *
  * @author nejcb
@@ -357,7 +359,9 @@ LinkedList list= new LinkedList();
     JOptionPane.showMessageDialog(null, "Username already exists!");
 } else if (username.getText().equals("") || name.getText().equals("") || doposit.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || password.getText().equals("") || retypePassword.getText().equals("") || address.getText().equals("")) {
     JOptionPane.showMessageDialog(null, "All the fields are required!");
-} else if (checkYear(year_birth.getText())) {
+} else if (!isValidEmail(email.getText())) {
+    JOptionPane.showMessageDialog(null, "Invalid email address!");
+}else if (checkYear(year_birth.getText())) {
     Random rand = new Random();
     int pin = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
     int c1, c2, c3, c4;
@@ -553,6 +557,11 @@ private boolean checkYear(String text) {
       e.printStackTrace();
     }
     }
-
-
+    
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 }
