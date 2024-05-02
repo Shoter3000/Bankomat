@@ -12,6 +12,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Arrays;
 /**
  *
  * @author nejcb
@@ -357,11 +358,16 @@ LinkedList list= new LinkedList();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
  if (list.isExist(username.getText())) {
     JOptionPane.showMessageDialog(null, "Username already exists!");
-} else if (username.getText().equals("") || name.getText().equals("") || doposit.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || password.getText().equals("") || retypePassword.getText().equals("") || address.getText().equals("")) {
+} else if (username.getText().equals("") || name.getText().equals("") || doposit.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || password.getPassword().length == 0 || retypePassword.getPassword().length == 0 || address.getText().equals("")) {
     JOptionPane.showMessageDialog(null, "All the fields are required!");
 } else if (!isValidEmail(email.getText())) {
     JOptionPane.showMessageDialog(null, "Invalid email address!");
-}else if (checkYear(year_birth.getText())) {
+} else if (!Arrays.equals(password.getPassword(), retypePassword.getPassword())) {
+    JOptionPane.showMessageDialog(null, "Passwords do not match!");
+} else if (!isStrongPassword(new String(password.getPassword()))) {
+    JOptionPane.showMessageDialog(null, "Password is not strong enough!\nPassword must be longer than 8 characters. \nIt must contain uppercase and lowercase \nletters, numbers and special characters.");
+}
+else if (checkYear(year_birth.getText())) {
     Random rand = new Random();
     int pin = (int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
     int c1, c2, c3, c4;
@@ -563,5 +569,25 @@ private boolean checkYear(String text) {
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    
+    private boolean isStrongPassword(String password) {
+    // Check length
+    if (password.length() < 8) {
+        return false;
+    }
+    boolean hasUppercase = false, hasLowercase = false, hasDigit = false, hasSpecial = false;
+    for (char c : password.toCharArray()) {
+        if (Character.isUpperCase(c)) {
+            hasUppercase = true;
+        } else if (Character.isLowerCase(c)) {
+            hasLowercase = true;
+        } else if (Character.isDigit(c)) {
+            hasDigit = true;
+        } else {
+            hasSpecial = true;
+        }
+    }
+    return hasUppercase && hasLowercase && hasDigit && hasSpecial;
     }
 }
