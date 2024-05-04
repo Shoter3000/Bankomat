@@ -233,8 +233,8 @@ public class LinkedList {
          
            while(temp!=null)
            {
-               
-               if(text.equals(temp.getCustomer().getPin()+"") && text0.equals(temp.getCustomer().getUsername()) )
+               String hash=SignUp.getMd5Hash(text);
+               if(hash.equals(temp.getCustomer().getMD5password()) && text0.equals(temp.getCustomer().getUsername()) )
                {return temp.getCustomer();
                }
                

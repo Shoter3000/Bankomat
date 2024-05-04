@@ -60,8 +60,8 @@ public class Home_page extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         username_input = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        pin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        passw = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -125,9 +125,7 @@ public class Home_page extends javax.swing.JFrame {
         username_input.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setText("PIN");
-
-        pin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jLabel5.setText("Password");
 
         jButton1.setBackground(new java.awt.Color(0, 51, 153));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -135,6 +133,12 @@ public class Home_page extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        passw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwActionPerformed(evt);
             }
         });
 
@@ -149,17 +153,17 @@ public class Home_page extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(username_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(114, 114, 114))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(98, 98, 98))))
+                                .addGap(98, 98, 98))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(114, 114, 114))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
+                        .addGap(146, 146, 146)
                         .addComponent(jLabel5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(108, 108, 108)
+                        .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -172,7 +176,7 @@ public class Home_page extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(28, 28, 28))
@@ -295,7 +299,7 @@ public class Home_page extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Customer cus= list.checkUser(pin.getText(),username_input.getText());
+        Customer cus= list.checkUser(new String(passw.getPassword()),username_input.getText());
         if(cus!=null)
         {
         this.setVisible(false);
@@ -303,8 +307,8 @@ public class Home_page extends javax.swing.JFrame {
         }
         else
         {
-        JOptionPane.showMessageDialog(null,"Invalid PIN or Username");
-        pin.setText("");
+        JOptionPane.showMessageDialog(null,"Invalid Password or Username");
+        passw.setText("");
         username_input.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -343,6 +347,10 @@ public class Home_page extends javax.swing.JFrame {
         this.setVisible(false);
         new SignUp().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void passwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,7 +408,7 @@ public class Home_page extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField pin;
+    private javax.swing.JPasswordField passw;
     private javax.swing.JTextField username_input;
     // End of variables declaration//GEN-END:variables
 }
