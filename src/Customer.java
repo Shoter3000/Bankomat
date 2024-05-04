@@ -11,7 +11,7 @@ public class Customer {
     String name, surname, username, card, year_birth, MD5password, email, address;
     double balance;
     int pin;
-    //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
+    //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address ;
     public Customer(String username, String name, String surname, String year_birth, double balance, int pin, String card, String email, String MD5password, String address) {
         this.username = username;        
         this.name = name;        
