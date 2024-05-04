@@ -69,9 +69,9 @@ Customer cus;
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
-        retypePassword1 = new javax.swing.JPasswordField();
         jLabel16 = new javax.swing.JLabel();
         checkbox1 = new java.awt.Checkbox();
+        retypePassword = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -180,12 +180,6 @@ Customer cus;
         jLabel15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel15.setText("NEW PASSWORD *");
 
-        retypePassword1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retypePassword1ActionPerformed(evt);
-            }
-        });
-
         jLabel16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel16.setText("RE-TYPE PASSWORD");
 
@@ -284,9 +278,9 @@ Customer cus;
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(retypePassword1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(retypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -327,8 +321,8 @@ Customer cus;
                     .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(retypePassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(retypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -366,14 +360,12 @@ Customer cus;
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+String MD5password = "";
 if (name.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || address.getText().equals("")) {
     JOptionPane.showMessageDialog(null, "All the fields are required!");
 }else if (!isValidEmail(email.getText())) {
     JOptionPane.showMessageDialog(null, "Invalid email address!"); 
-}else  if (checkYear(year_birth.getText())) {
-    try{
-        String MD5password = "";
-        if (checkbox1.equals(true)) {
+} else if (checkbox1.getState()) {
             if (!Arrays.equals(password.getPassword(), retypePassword.getPassword())) {
             JOptionPane.showMessageDialog(null, "Passwords do not match!");
             } else if (!isStrongPassword(new String(password.getPassword()))) {
@@ -385,7 +377,8 @@ if (name.getText().equals("") || surname.getText().equals("") || email.getText()
             System.out.println(MD5password);
             list.UpdatePassword(cus, MD5password);
             writeFile(list.allData());
-        }
+} if (checkYear(year_birth.getText())) {  
+    try{
         list.Update(cus, name.getText(), surname.getText(), year_birth.getText(), email.getText(), address.getText());
         writeFile(list.allData());
         JOptionPane.showMessageDialog(null, "Account is updated successfully!\nYou will be now logged out!");
@@ -416,10 +409,6 @@ if (name.getText().equals("") || surname.getText().equals("") || email.getText()
     private void addressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressFocusGained
 
     }//GEN-LAST:event_addressFocusGained
-
-    private void retypePassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retypePassword1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_retypePassword1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,7 +474,6 @@ if (name.getText().equals("") || surname.getText().equals("") || email.getText()
     private javax.swing.JTextField name;
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField retypePassword;
-    private javax.swing.JPasswordField retypePassword1;
     private javax.swing.JTextField surname;
     private javax.swing.JTextField year_birth;
     // End of variables declaration//GEN-END:variables
