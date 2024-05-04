@@ -61,11 +61,11 @@ public class ATM_machine extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        pin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         card = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        pin = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -154,24 +154,6 @@ public class ATM_machine extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setText("PIN");
 
-        pin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pin.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pinFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pinFocusLost(evt);
-            }
-        });
-        pin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pinKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                pinKeyTyped(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel2.setText("Enter PIN");
 
@@ -199,6 +181,17 @@ public class ATM_machine extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel6.setText("Enter Card Number");
 
+        pin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pinFocusGained(evt);
+            }
+        });
+        pin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -206,24 +199,23 @@ public class ATM_machine extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(card, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addComponent(jLabel8))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabel7)))))
+                        .addGap(170, 170, 170)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(133, 133, 133)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pin)
+                                .addComponent(jLabel6)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(161, 161, 161)
+                            .addComponent(jLabel2))))
                 .addGap(57, 57, 57))
         );
         jPanel2Layout.setVerticalGroup(
@@ -241,7 +233,7 @@ public class ATM_machine extends javax.swing.JFrame {
                 .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 370, 280));
@@ -374,6 +366,11 @@ public class ATM_machine extends javax.swing.JFrame {
         jButton13.setMaximumSize(new java.awt.Dimension(40, 40));
         jButton13.setMinimumSize(new java.awt.Dimension(40, 40));
         jButton13.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton15.setBackground(new java.awt.Color(51, 255, 51));
         jButton15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -513,7 +510,7 @@ public class ATM_machine extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        Customer cus= list.checkPInCard(pin.getText(),card.getText());
+        Customer cus= list.checkPInCard(new String(pin.getPassword()),card.getText());
         if(cus!=null)
         {
             this.setVisible(false);
@@ -543,7 +540,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"1");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -576,7 +573,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"2");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -609,7 +606,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"3");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -642,7 +639,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"4");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -675,7 +672,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"5");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -708,7 +705,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"6");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -741,7 +738,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"7");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -774,7 +771,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"8");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -807,7 +804,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"9");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -840,7 +837,7 @@ public class ATM_machine extends javax.swing.JFrame {
           pin.setText(pin.getText()+"0");
         
         }
-        else if(p==2)
+        else if(p==2 && card.getText().length()<=18)
         {
            if(card.getText().length()==4)
             
@@ -889,22 +886,6 @@ int p=0;
         // TODO add your handling code here:
     }//GEN-LAST:event_cardKeyTyped
 
-    private void pinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinFocusGained
-        p=1;
-    }//GEN-LAST:event_pinFocusGained
-
-    private void pinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinFocusLost
-
-    }//GEN-LAST:event_pinFocusLost
-
-    private void pinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pinKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pinKeyPressed
-
-    private void pinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pinKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pinKeyTyped
-
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         if(p==1){
@@ -921,6 +902,18 @@ int p=0;
             }
         }
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void pinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pinActionPerformed
+
+    private void pinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinFocusGained
+        p=1;
+    }//GEN-LAST:event_pinFocusGained
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -994,6 +987,6 @@ int p=0;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField pin;
+    private javax.swing.JPasswordField pin;
     // End of variables declaration//GEN-END:variables
 }
