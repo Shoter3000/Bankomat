@@ -264,7 +264,39 @@ public class LinkedList {
                return null;
         
         }
+
+    void Update(Customer cuss, String name, String surname, String year_birth, String email, String address) {
+    Node temp=head;
+           while(temp!=null)
+           {       
+               if(cuss.getUsername().equals(temp.getCustomer().getUsername()))
+               {
+                   temp.getCustomer().nameUpdate(name);
+                   temp.getCustomer().surnameUpdate(surname);
+                   temp.getCustomer().year_birthUpdate(year_birth);
+                   temp.getCustomer().emailUpdate(email);
+                   temp.getCustomer().addressUpdate(address);
+                   break; 
+               }
+               temp=temp.getPre();
+           
+           }
     
+    }
     
+    void UpdatePassword(Customer cuss, String hash) {
+    Node temp=head;
+           while(temp!=null)
+           {       
+               if(cuss.getUsername().equals(temp.getCustomer().getUsername()))
+               {
+                   temp.getCustomer().passwordUpdate(hash);
+                   break; 
+               }
+               temp=temp.getPre();
+           
+           }
+    
+    }
 
 }

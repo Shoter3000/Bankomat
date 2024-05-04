@@ -21,6 +21,7 @@ LinkedList list= new LinkedList();
      * Creates new form Deposit
      */
     Customer cus;
+    
     public Deposit() {
         initComponents();
     }

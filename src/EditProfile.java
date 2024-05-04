@@ -7,15 +7,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Arrays;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 /**
  *
  * @author nejcb
@@ -28,18 +27,14 @@ Customer cus;
      */
     public EditProfile() {
         initComponents();
-        this.cus = cus;
-        checkFileName();
-        readFile();
     }
     
     public EditProfile(Customer cus) {
         initComponents();
         this.cus=cus;
+        readFile();
         name.setText(cus.getName());
         surname.setText(cus.getSurname());
-        name.setText(cus.getName());
-        username.setText(cus.getUsername());
         year_birth.setText(cus.getYear_birth());
         email.setText(cus.getEmail());
         address.setText(cus.getAddress());
@@ -63,9 +58,6 @@ Customer cus;
         jLabel5 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
         surname = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         year_birth = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -74,6 +66,12 @@ Customer cus;
         email = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
+        retypePassword1 = new javax.swing.JPasswordField();
+        jLabel16 = new javax.swing.JLabel();
+        checkbox1 = new java.awt.Checkbox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -132,12 +130,6 @@ Customer cus;
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("SURNAME *");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setText("USERNAME *");
-
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel10.setText("YEAR OF BIRTH");
-
         jLabel11.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel11.setText("Edit profile! *");
 
@@ -181,6 +173,24 @@ Customer cus;
                 addressActionPerformed(evt);
             }
         });
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel13.setText("YEAR OF BIRTH");
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel15.setText("NEW PASSWORD *");
+
+        retypePassword1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retypePassword1ActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel16.setText("RE-TYPE PASSWORD");
+
+        checkbox1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        checkbox1.setLabel("Change password");
 
         jMenu1.setText("File");
 
@@ -231,6 +241,9 @@ Customer cus;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(358, 358, 358)
@@ -243,8 +256,16 @@ Customer cus;
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(200, 200, 200)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
+                                        .addGap(330, 330, 330))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(76, 76, 76)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                            .addComponent(surname)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel14)
                                             .addGap(79, 79, 79)
@@ -254,23 +275,21 @@ Customer cus;
                                             .addGap(111, 111, 111)
                                             .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel13)
                                             .addGap(38, 38, 38)
-                                            .addComponent(year_birth, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addGap(64, 64, 64)
-                                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(76, 76, 76)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                                            .addComponent(surname))))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(year_birth, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(200, 200, 200)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel16))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(retypePassword1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -288,14 +307,10 @@ Customer cus;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(year_birth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(year_birth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
@@ -304,7 +319,17 @@ Customer cus;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15))
+                    .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(retypePassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -341,33 +366,40 @@ Customer cus;
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-if (username.getText().equals("") || name.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || address.getText().equals("")) {
+if (name.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || address.getText().equals("")) {
     JOptionPane.showMessageDialog(null, "All the fields are required!");
 }else if (!isValidEmail(email.getText())) {
-    JOptionPane.showMessageDialog(null, "Invalid email address!");
-} else  if (checkYear(year_birth.getText())) {
-        int pin = cus.getPin();
-        double amount = cus.getBalance();
-        String cardNumber = cus.getCard();
-        String MD5password = cus.getMD5password();
-        //list.deleteUser(cus.getUsername());
-        if (list.isExist(username.getText())) {
-            int random=(int) (Math.random()*999)+100;
-            username.setText(username.getText()+random);
-            JOptionPane.showMessageDialog(null, "Username already exists!\nTry this one: "+username.getText());
+    JOptionPane.showMessageDialog(null, "Invalid email address!"); 
+}else  if (checkYear(year_birth.getText())) {
+    try{
+        String MD5password = "";
+        if (checkbox1.equals(true)) {
+            if (!Arrays.equals(password.getPassword(), retypePassword.getPassword())) {
+            JOptionPane.showMessageDialog(null, "Passwords do not match!");
+            } else if (!isStrongPassword(new String(password.getPassword()))) {
+            JOptionPane.showMessageDialog(null, "Password is not strong enough!\nPassword must be longer than 8 characters. \nIt must contain uppercase and lowercase \nletters, numbers and special characters.");
+            } else{
+            char[] CharPassword = password.getPassword();
+            String StringPassword = new String(CharPassword);
+            MD5password = getMd5Hash(StringPassword);}
+            System.out.println(MD5password);
+            list.UpdatePassword(cus, MD5password);
+            writeFile(list.allData());
         }
-        list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, cardNumber, email.getText(), MD5password, address.getText()));
+        list.Update(cus, name.getText(), surname.getText(), year_birth.getText(), email.getText(), address.getText());
         writeFile(list.allData());
         JOptionPane.showMessageDialog(null, "Account is updated successfully!\nYou will be now logged out!");
         name.setText("");
         surname.setText("");
-        username.setText("");
         year_birth.setText("");
         email.setText("");
         address.setText("");
 
         dispose();
         new Home_page().setVisible(true);
+    }catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error!");
+    }
 } else {
     JOptionPane.showMessageDialog(null, "Year of birth must be valid!");
 }
@@ -384,6 +416,10 @@ if (username.getText().equals("") || name.getText().equals("") || surname.getTex
     private void addressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressFocusGained
 
     }//GEN-LAST:event_addressFocusGained
+
+    private void retypePassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retypePassword1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retypePassword1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,19 +458,21 @@ if (username.getText().equals("") || name.getText().equals("") || surname.getTex
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
+    private java.awt.Checkbox checkbox1;
     private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -445,8 +483,10 @@ if (username.getText().equals("") || name.getText().equals("") || surname.getTex
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JTextField name;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField retypePassword;
+    private javax.swing.JPasswordField retypePassword1;
     private javax.swing.JTextField surname;
-    private javax.swing.JTextField username;
     private javax.swing.JTextField year_birth;
     // End of variables declaration//GEN-END:variables
     

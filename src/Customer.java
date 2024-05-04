@@ -44,7 +44,37 @@ public class Customer {
               this.balance+=amount;
        
       }
-
+      
+      public void nameUpdate(String n)
+      {
+              this.name=n;
+      }
+      
+      public void surnameUpdate(String s)
+      {
+              this.surname=s;
+      }
+      
+      public void year_birthUpdate(String y)
+      {
+              this.year_birth=y;
+      }
+      
+      public void emailUpdate(String e)
+      {
+              this.email=e;
+      }
+      
+      public void addressUpdate(String a)
+      {
+              this.address=a;
+      }
+      
+       public void passwordUpdate(String p)
+      {
+              this.MD5password=p;
+      }
+      
     public String getSurname() {
         return surname;
     }
