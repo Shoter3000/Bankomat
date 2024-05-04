@@ -177,9 +177,10 @@ public class LinkedList {
                          +"\nName                        "+temp.getCustomer().getName()
                          +"\nSurname                     "+temp.getCustomer().getSurname()
                          +"\nYear of birth               "+temp.getCustomer().getYear_birth()
-                         +"\nPIN                         "+temp.getCustomer().getPin()
                          +"\nCard#                       "+temp.getCustomer().getCard()
-                         +"\nBalance                     "+temp.getCustomer().getBalance();
+                         +"\nBalance                     "+temp.getCustomer().getBalance()
+                         +"\nEmail                       "+temp.getCustomer().getEmail()
+                         +"\nAddress                     "+temp.getCustomer().getAddress();
                                  
                }
                temp=temp.getPre();
