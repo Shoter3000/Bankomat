@@ -12,14 +12,17 @@ public class Customer {
     double balance;
     int pin;
     //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
-    public Customer(String username, String name, String surname, String year_birth, double balance, int pin, String card) {
+    public Customer(String username, String name, String surname, String year_birth, double balance, int pin, String card, String email, String MD5password, String address) {
         this.username = username;        
         this.name = name;        
         this.surname = surname;        
         this.year_birth = year_birth;        
-        this.balance = balance;        
+        this.balance = balance;   
         this.pin = pin;        
         this.card = card;
+        this.email = email;
+        this.MD5password = MD5password;
+        this.address = address;
 
     }
     public Customer() {
@@ -69,9 +72,21 @@ public class Customer {
     public String getCard() {
         return card;
     }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public String getMD5password() {
+        return MD5password;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
 
     @Override
     public String toString() {
-        return username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
+        return username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address ;
     }    
 }

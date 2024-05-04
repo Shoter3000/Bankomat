@@ -390,9 +390,9 @@ LinkedList list= new LinkedList();
         }
         char[] CharPassword = password.getPassword();
         String StringPassword = new String(CharPassword);
-        String MD5Password = getMd5Hash(StringPassword);
+        String MD5password = getMd5Hash(StringPassword);
 
-        list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, c1 + " " + c2 + " " + c3 + " " + c4));
+        list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, c1 + " " + c2 + " " + c3 + " " + c4, email.getText(), MD5password, address.getText()));
         writeFile(list.allData());
         JOptionPane.showMessageDialog(null, "Account is registered successfully!\nAccount PIN = " + pin);
         name.setText("");
