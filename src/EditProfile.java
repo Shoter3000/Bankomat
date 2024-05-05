@@ -366,17 +366,22 @@ if (name.getText().equals("") || surname.getText().equals("") || email.getText()
 }else if (!isValidEmail(email.getText())) {
     JOptionPane.showMessageDialog(null, "Invalid email address!"); 
 } else if (checkbox1.getState()) {
+        try{
             if (!Arrays.equals(password.getPassword(), retypePassword.getPassword())) {
-            JOptionPane.showMessageDialog(null, "Passwords do not match!");
-            } else if (!isStrongPassword(new String(password.getPassword()))) {
-            JOptionPane.showMessageDialog(null, "Password is not strong enough!\nPassword must be longer than 8 characters. \nIt must contain uppercase and lowercase \nletters, numbers and special characters.");
-            } else{
-            char[] CharPassword = password.getPassword();
-            String StringPassword = new String(CharPassword);
-            MD5password = getMd5Hash(StringPassword);}
-            System.out.println(MD5password);
-            list.UpdatePassword(cus, MD5password);
-            writeFile(list.allData());
+                JOptionPane.showMessageDialog(null, "Passwords do not match!");
+                } else if (!isStrongPassword(new String(password.getPassword()))) {
+                JOptionPane.showMessageDialog(null, "Password is not strong enough!\nPassword must be longer than 8 characters. \nIt must contain uppercase and lowercase \nletters, numbers and special characters.");
+                } else{
+                char[] CharPassword = password.getPassword();
+                String StringPassword = new String(CharPassword);
+                MD5password = getMd5Hash(StringPassword);}
+                System.out.println(MD5password);
+                list.UpdatePassword(cus, MD5password);
+                writeFile(list.allData());
+        }catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error!");
+        }
+            
 } if (checkYear(year_birth.getText())) {  
     try{
         list.Update(cus, name.getText(), surname.getText(), year_birth.getText(), email.getText(), address.getText());
