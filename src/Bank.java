@@ -1,9 +1,11 @@
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -29,6 +31,13 @@ LinkedList list= new LinkedList();
         this.cus= cus;
         readFile();
         display.setText("Welcome "+cus.getName()+"!");
+        Image image;
+        ImageIcon ico = new ImageIcon();
+        ico = new ImageIcon(cus.getImage());
+        image = ico.getImage();
+        ico = new ImageIcon(image.getScaledInstance(90, 90, Image.SCALE_SMOOTH));
+        imageLabel.setText(null);
+        imageLabel.setIcon(ico);
     }
 
     private void readFile() {
@@ -84,7 +93,7 @@ LinkedList list= new LinkedList();
         display = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataDis = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -166,8 +175,7 @@ LinkedList list= new LinkedList();
         dataDis.setRows(5);
         jScrollPane1.setViewportView(dataDis);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User.jpg"))); // NOI18N
-        jLabel4.setPreferredSize(new java.awt.Dimension(20, 20));
+        imageLabel.setPreferredSize(new java.awt.Dimension(20, 20));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setText("Edit Profile");
@@ -229,7 +237,7 @@ LinkedList list= new LinkedList();
                         .addGap(145, 145, 145)
                         .addComponent(jButton2)
                         .addGap(103, 103, 103)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(99, 99, 99)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -264,7 +272,7 @@ LinkedList list= new LinkedList();
                         .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,6 +361,7 @@ LinkedList list= new LinkedList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea dataDis;
     private javax.swing.JLabel display;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -360,7 +369,6 @@ LinkedList list= new LinkedList();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

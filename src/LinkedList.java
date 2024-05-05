@@ -265,7 +265,7 @@ public class LinkedList {
         
         }
 
-    void Update(Customer cuss, String name, String surname, String year_birth, String email, String address) {
+    void Update(Customer cuss, String name, String surname, String year_birth, String email, String address, String image) {
     Node temp=head;
            while(temp!=null)
            {       
@@ -276,6 +276,7 @@ public class LinkedList {
                    temp.getCustomer().year_birthUpdate(year_birth);
                    temp.getCustomer().emailUpdate(email);
                    temp.getCustomer().addressUpdate(address);
+                   temp.getCustomer().imageUpdate(image);
                    break; 
                }
                temp=temp.getPre();

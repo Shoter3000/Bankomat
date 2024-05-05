@@ -26,7 +26,7 @@ import javax.swing.JFileChooser;
 public class SignUp extends javax.swing.JFrame {
 LinkedList list= new LinkedList();
 
-public static String pfpPath = "";
+String pfpPath = "";
 
     /**
      * Creates new form SignUp
@@ -211,6 +211,9 @@ public static String pfpPath = "";
             }
         });
 
+        imageLabel.setMaximumSize(new java.awt.Dimension(90, 90));
+        imageLabel.setMinimumSize(new java.awt.Dimension(90, 90));
+
         jMenu1.setText("File");
 
         jMenuItem4.setText("Back to Home Page");
@@ -312,7 +315,7 @@ public static String pfpPath = "";
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(349, 349, 349)
-                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -353,8 +356,8 @@ public static String pfpPath = "";
                     .addComponent(jLabel16)
                     .addComponent(chooseIMG))
                 .addGap(18, 18, 18)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -476,7 +479,7 @@ public static String pfpPath = "";
                 //FileNameExtensionFilter filter=new FileNameExtensionFilter();
                 ico = new ImageIcon(pfpPath);
                 image = ico.getImage();
-                ico = new ImageIcon(image.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+                ico = new ImageIcon(image.getScaledInstance(90, 90, Image.SCALE_SMOOTH));
                 imageLabel.setText(null);
                 imageLabel.setIcon(ico);
                 break;
