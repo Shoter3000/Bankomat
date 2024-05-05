@@ -394,12 +394,12 @@ String pfpPath = "";
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
- if (list.isExist(username.getText())) {
+if (username.getText().equals("") || name.getText().equals("") || doposit.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || password.getPassword().length == 0 || retypePassword.getPassword().length == 0 || address.getText().equals("")) {
+    JOptionPane.showMessageDialog(null, "All the fields are required!");
+} else if (list.isExist(username.getText())) {
     int random=(int) (Math.random()*999)+100;
     username.setText(username.getText()+random);
     JOptionPane.showMessageDialog(null, "Username already exists!\nTry this one: "+username.getText());
-} else if (username.getText().equals("") || name.getText().equals("") || doposit.getText().equals("") || surname.getText().equals("") || email.getText().equals("") || password.getPassword().length == 0 || retypePassword.getPassword().length == 0 || address.getText().equals("")) {
-    JOptionPane.showMessageDialog(null, "All the fields are required!");
 } else if (!isValidEmail(email.getText())) {
     JOptionPane.showMessageDialog(null, "Invalid email address!");
 } else if (!Arrays.equals(password.getPassword(), retypePassword.getPassword())) {
