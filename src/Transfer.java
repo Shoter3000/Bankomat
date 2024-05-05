@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
@@ -98,8 +99,8 @@ LinkedList list= new LinkedList();
         jLabel8 = new javax.swing.JLabel();
         amount = new javax.swing.JTextField();
         display1 = new javax.swing.JLabel();
-        balance = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        balance = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -110,7 +111,6 @@ LinkedList list= new LinkedList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -195,6 +195,8 @@ LinkedList list= new LinkedList();
 
         jLabel5.setText("Your balance");
 
+        balance.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jMenu1.setText("File");
 
         jMenuItem4.setText("Log Out");
@@ -268,18 +270,17 @@ LinkedList list= new LinkedList();
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(172, 172, 172)
                                         .addComponent(jLabel4))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(28, 28, 28))))
@@ -311,8 +312,8 @@ LinkedList list= new LinkedList();
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
                             .addComponent(jButton3))))
@@ -357,12 +358,34 @@ if (amount.getText().equals("") || username.getText().equals("")) {
 } else if (Double.parseDouble(amount.getText()) < 0) {
             JOptionPane.showMessageDialog(null, "Amount cannot be negative!");
 } else if (list.isExist(username.getText())) {
-        cus.withdraw(Double.parseDouble(amount.getText()));
+    try {
+        double money = Double.parseDouble(amount.getText());
+        BigDecimal decimalAmount = new BigDecimal(String.valueOf(money));       
+
+        // Check if the number has more than two decimal places
+        if (decimalAmount.scale() > 2) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+            return;
+        } else if (money < 0) {
+            JOptionPane.showMessageDialog(null, "Amount should not be negative!");
+            return;
+        }
+        cus.withdraw(money);
         list.Withraw(cus);
         writeFile(list.allData());
 
+        Customer cus2 = list.getCustomerByUsername(username.getText());
+
+        list.Deposit(cus2, money);
+        writeFile(list.allData());
+        JOptionPane.showMessageDialog(null, "Money successfully deposited to " + cus2.getName() +" "+ cus2.getSurname());
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid amount");
+    }
     dispose();
     new Bank(cus).setVisible(true);
+} else{
+     JOptionPane.showMessageDialog(null, "User don't exist!");
 }
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -404,7 +427,7 @@ if (amount.getText().equals("") || username.getText().equals("")) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
-    private javax.swing.JTextField balance;
+    private javax.swing.JLabel balance;
     private javax.swing.JLabel display1;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton1;

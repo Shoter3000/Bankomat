@@ -299,5 +299,18 @@ public class LinkedList {
            }
     
     }
+    
+    public Customer getCustomerByUsername(String username) {
+    Node temp = head;
 
+    while (temp != null) {
+        if (username.equals(temp.getCustomer().getUsername())) {
+            return temp.getCustomer();
+        }
+        temp = temp.getPre();
+    }
+
+    return null;
+    }
+    
 }

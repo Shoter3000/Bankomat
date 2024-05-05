@@ -93,9 +93,9 @@
                       <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
                       <Component id="imageLabel" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace min="99" pref="99" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton4" min="-2" pref="112" max="-2" attributes="0"/>
-                          <Component id="jButton5" min="-2" pref="112" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton4" max="32767" attributes="0"/>
+                          <Component id="jButton5" pref="128" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
