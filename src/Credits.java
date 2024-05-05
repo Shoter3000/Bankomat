@@ -44,13 +44,13 @@ public class Credits extends javax.swing.JFrame {
         jLabel2.setText("Author: Nejc Vidmar");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Mentors: Aljaž Gec, Tomaž Mavri");
+        jLabel3.setText("Mentors: Edi Medvešček, Tomaž Mavri");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Date: June 2023");
+        jLabel4.setText("Date: May 2024");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Version: 1.0");
+        jLabel5.setText("Version: 2.0");
 
         jButton1.setBackground(new java.awt.Color(51, 204, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -85,7 +85,7 @@ public class Credits extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addComponent(jLabel3)
-                .addGap(0, 104, Short.MAX_VALUE))
+                .addGap(0, 71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
