@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -20,8 +21,12 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author nejcb
  */
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 public class SignUp extends javax.swing.JFrame {
 LinkedList list= new LinkedList();
+
+public static String pfpPath = "";
 
     /**
      * Creates new form SignUp
@@ -68,6 +73,9 @@ LinkedList list= new LinkedList();
         retypePassword = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        chooseIMG = new javax.swing.JButton();
+        imageLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -193,6 +201,16 @@ LinkedList list= new LinkedList();
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel16.setText("IMAGE");
+
+        chooseIMG.setText("Choose image");
+        chooseIMG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseIMGActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         jMenuItem4.setText("Back to Home Page");
@@ -240,12 +258,6 @@ LinkedList list= new LinkedList();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jButton2)
-                .addGap(55, 55, 55)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -270,7 +282,7 @@ LinkedList list= new LinkedList();
                                     .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(year_birth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel13)
@@ -284,8 +296,24 @@ LinkedList list= new LinkedList();
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(18, 18, 18)
-                                        .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(chooseIMG)
+                                        .addGap(93, 93, 93)))))
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(jButton2)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(349, 349, 349)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,8 +349,12 @@ LinkedList list= new LinkedList();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(year_birth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel16)
+                    .addComponent(chooseIMG))
+                .addGap(18, 18, 18)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -394,7 +426,7 @@ LinkedList list= new LinkedList();
         String StringPassword = new String(CharPassword);
         String MD5password = getMd5Hash(StringPassword);
 
-        list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, c1 + " " + c2 + " " + c3 + " " + c4, email.getText(), MD5password, address.getText()));
+        list.insert(new Customer(username.getText(), name.getText(), surname.getText(), year_birth.getText(), amount, pin, c1 + " " + c2 + " " + c3 + " " + c4, email.getText(), MD5password, address.getText(), pfpPath));
         writeFile(list.allData());
         JOptionPane.showMessageDialog(null, "Account is registered successfully!\nAccount PIN = " + pin);
         name.setText("");
@@ -434,6 +466,27 @@ LinkedList list= new LinkedList();
     address.setText("");
     }//GEN-LAST:event_addressFocusGained
 
+    private void chooseIMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseIMGActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        Image image;
+        ImageIcon ico = new ImageIcon();
+        switch (fileChooser.showOpenDialog(null)) {
+            case JFileChooser.APPROVE_OPTION:
+                pfpPath =fileChooser.getSelectedFile().getAbsolutePath();
+                //FileNameExtensionFilter filter=new FileNameExtensionFilter();
+                ico = new ImageIcon(pfpPath);
+                image = ico.getImage();
+                ico = new ImageIcon(image.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+                imageLabel.setText(null);
+                imageLabel.setIcon(ico);
+                break;
+            default:
+                imageLabel.setText("No Picture");
+                imageLabel.setIcon(null);
+                pfpPath="src/images/User.jpg";
+        };
+    }//GEN-LAST:event_chooseIMGActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,8 +524,10 @@ LinkedList list= new LinkedList();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
+    private javax.swing.JButton chooseIMG;
     private javax.swing.JTextField doposit;
     private javax.swing.JTextField email;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -482,6 +537,7 @@ LinkedList list= new LinkedList();
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -551,8 +607,8 @@ private boolean checkYear(String text) {
         if(data.length()>5)
         {
           String[] cus= data.split(";");
-         //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address ;
-          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6],cus[7],cus[8],cus[9]));
+         //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address+";" +image ;
+          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6],cus[7],cus[8],cus[9],cus[10]));
         
         }
       }

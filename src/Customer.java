@@ -8,11 +8,11 @@
  * @author nejcb
  */
 public class Customer {
-    String name, surname, username, card, year_birth, MD5password, email, address;
+    String name, surname, username, card, year_birth, MD5password, email, address, image;
     double balance;
     int pin;
     //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address ;
-    public Customer(String username, String name, String surname, String year_birth, double balance, int pin, String card, String email, String MD5password, String address) {
+    public Customer(String username, String name, String surname, String year_birth, double balance, int pin, String card, String email, String MD5password, String address, String image) {
         this.username = username;        
         this.name = name;        
         this.surname = surname;        
@@ -23,6 +23,7 @@ public class Customer {
         this.email = email;
         this.MD5password = MD5password;
         this.address = address;
+        this.image = image;
 
     }
     public Customer() {
@@ -74,6 +75,11 @@ public class Customer {
       {
               this.MD5password=p;
       }
+       
+       public void imageUpdate(String i)
+      {
+              this.image=i;
+      }       
       
     public String getSurname() {
         return surname;
@@ -114,9 +120,13 @@ public class Customer {
     public String getAddress() {
         return address;
     }
+    
+    public String getImage() {
+        return image;
+    }
 
     @Override
     public String toString() {
-        return username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address ;
+        return username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address+";" +image ;
     }    
 }

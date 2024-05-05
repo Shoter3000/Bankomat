@@ -31,8 +31,8 @@ public class Home_page extends javax.swing.JFrame {
         if(data.length()>5)
         {
           String[] cus= data.split(";");
-         // username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card ;
-          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6],cus[7],cus[8],cus[9]));
+         //username+";" +name+";" +surname+";" +year_birth+";" +balance+";" +pin+";" +card+";" +email+";" +MD5password+";" +address+";" +image ;
+          list.insert(new Customer(cus[0],cus[1],cus[2],cus[3],Double.parseDouble(cus[4]),Integer.parseInt(cus[5]),cus[6],cus[7],cus[8],cus[9],cus[10]));
         
         }
       }
@@ -136,6 +136,7 @@ public class Home_page extends javax.swing.JFrame {
             }
         });
 
+        passw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwActionPerformed(evt);
